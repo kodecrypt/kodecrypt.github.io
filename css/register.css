@@ -109,6 +109,7 @@ a {
   border-radius: 10px;
   border: solid #d9b69e;
   border-style: groove;
+   padding:10px;
  }
 
 #submitButton
