@@ -127,3 +127,11 @@ a {
   background-color: #d9b69e;
   color: white;
 }
+ #timer{
+   background-color:black;
+   font-size: 200%;
+   color: #d9b69e;
+   box-shadow: 10px 10px 10px 10px;
+   size: 20%;
+   text-align: center;
+ }
