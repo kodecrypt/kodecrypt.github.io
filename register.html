@@ -137,7 +137,7 @@
       var answer = document.querySelector('input[name = "q'+String(i)+ '"]:checked')?Number(document.querySelector('input[name = "q'+String(i)+ '"]:checked').value) : 0;
       answers.push(answer)
     }
-    var ref = firebase.database().ref().child("users").child(9052168250).child("answers");
+    var ref = firebase.database().ref().child("users").child(ph1).child("answers");
     ref.set(answers);
     document.getElementById("quiz").style.display="none";
     document.getElementById("done").style.display="block";
