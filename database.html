@@ -24,10 +24,10 @@ firebase.database().ref("questions").once("value").then(function(data) {
     document.getElementById("content").innerHTML+="<br/><br/><b>Question</b> "+i+"<br/>"
     document.getElementById("content").innerHTML+= "<textarea id=q"+i+" rows=4 cols=50> "+te.questionStatement+"</textarea><br/><br/>"
     document.getElementById("content").innerHTML+="<b>Options</b> "+i+"<br/>"
-    document.getElementById("content").innerHTML+= "<textarea id=a"+i+"1>"+ te[1]+"</textarea><br/>"
-    document.getElementById("content").innerHTML+= "<textarea id=a"+i+"2>"+ te[2]+"</textarea><br/>"
-    document.getElementById("content").innerHTML+= "<textarea id=a"+i+"3>"+ te[3]+"</textarea><br/>"
-    document.getElementById("content").innerHTML+= "<textarea id=a"+i+"4>"+ te[4]+"</textarea><br/>"
+    document.getElementById("content").innerHTML+= "<textarea id='a"+i+"1' >"+ te[1]+"</textarea><br/>"
+    document.getElementById("content").innerHTML+= "<textarea id='a"+i+"2' >"+ te[2]+"</textarea><br/>"
+    document.getElementById("content").innerHTML+= "<textarea id='a"+i+"3' >"+ te[3]+"</textarea><br/>"
+    document.getElementById("content").innerHTML+= "<textarea id='a"+i+"4' >"+ te[4]+"</textarea><br/>"
     i++;
     temp="q"+i;
   }
@@ -38,10 +38,9 @@ function save() {
   var questions = firebase.database().ref("questions");
   var newQ={};
   while(document.getElementById(temp)){
-
     newQ[temp]={
-      questionStatement: document.getElementById(temp).innerHTML,
-      1:document.getElementById("a"+p+"1").innerHTML,
+      questionStatement: document.getElementById(temp).value,
+      1:document.getElementById("a"+p+"1").value,
       2:document.getElementById("a"+p+"2").innerHTML,
       3:document.getElementById("a"+p+"3").innerHTML,
       4:document.getElementById("a"+p+"4").innerHTML
@@ -50,7 +49,7 @@ function save() {
     temp="q"+p;
   }
   firebase.database().ref("questions").set(newQ, function (err) {
-    alert("Saved to DB");
+    // alert("Saved to DB");
     console.log(err);
   });
 }
