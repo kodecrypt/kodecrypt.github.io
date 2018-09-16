@@ -41,15 +41,15 @@ function save() {
     newQ[temp]={
       questionStatement: document.getElementById(temp).value,
       1:document.getElementById("a"+p+"1").value,
-      2:document.getElementById("a"+p+"2").innerHTML,
-      3:document.getElementById("a"+p+"3").innerHTML,
-      4:document.getElementById("a"+p+"4").innerHTML
+      2:document.getElementById("a"+p+"2").value,
+      3:document.getElementById("a"+p+"3").value,
+      4:document.getElementById("a"+p+"4").value
     }
     p++;
     temp="q"+p;
   }
   firebase.database().ref("questions").set(newQ, function (err) {
-    // alert("Saved to DB");
+    alert("Saved to DB");
     console.log(err);
   });
 }
