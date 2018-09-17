@@ -52,10 +52,10 @@
             alert("Enter email-id of participant 1!");
         else if(!clg1)
               alert("Enter college of participant 1!");
-        // else if(String(ph1).length != 10)
-        //       alert("Enter valid phone number");
-        // else if(!email1||!email1.match(z))
-        //     alert("Enter valid email-id of participant 1!");
+        else if(String(ph1).length != 10)
+              alert("Enter valid phone number");
+        else if(!email1||!email1.match(z))
+            alert("Enter valid email-id of participant 1!");
         else{
 
           const auth = firebase.auth();
