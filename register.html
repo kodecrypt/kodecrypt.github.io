@@ -52,27 +52,29 @@
             alert("Enter email-id of participant 1!");
         else if(!clg1)
               alert("Enter college of participant 1!");
-        else if(String(ph1).length != 10)
-              alert("Enter valid phone number");
-        else if(!email1||!email1.match(z))
-            alert("Enter valid email-id of participant 1!");
+        // else if(String(ph1).length != 10)
+        //       alert("Enter valid phone number");
+        // else if(!email1||!email1.match(z))
+        //     alert("Enter valid email-id of participant 1!");
         else{
 
           const auth = firebase.auth();
             const temp = name1.replace(/ /g,'')
             const promise = auth.createUserWithEmailAndPassword(ph1+temp+"@kc.com", CollegeName);
-            promise.catch(e=>alert("Some problem :( please try again..."));
+            var timestamp=new Date();
+            timestamp=timestamp.toString()
+            promise.catch(e=>alert(e));
             firebase.database().ref("users/"+ph1).set({
             name:name1,
             email:email1,
             clg:clg1,
+            at: timestamp,
             partner:{
               name:name2,
               email:email2,
               clg:clg2,
               ph:ph2
-            },
-            at: new Date()
+            }
           })
           firebase.database().ref("count").once('value').then(function(values){
             if(ph2)
@@ -207,7 +209,7 @@
     <a class = "btn  js-scroll-trigger" href="#quiz"><button onclick="validate()" class="registerbtn js-scroll-trigger" href="#quiz">Register and take test</button></a>
   </div>
   </section>
-  <section class="callout" id="quiz" style="background-color: black;display:none">
+  <section class="callout" id="quiz" style="background-color: black;display:block">
     <div class="row" style="padding:30px;">
     <h2 class="mx-auto mb-5 col-sm-10" style="color: #d9b69e; text-align:right" >Quiz</h2>
     <div class="container col-sm-2" id="timer"></div>
