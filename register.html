@@ -29,18 +29,18 @@
   function validate() {
     var z=/^[a-z]{1,20}\d{0,10}\@[a-z]{1,5}\.[a-z]{2,3}$/;
 
-    
+
     var name1=document.getElementById('name1').value;
     var email1=document.getElementById('email1').value;
     ph1=document.getElementById('ph1').value;
-    
+
     var clg1=document.getElementById('clg1').value;
     var name2=document.getElementById('name2').value||null;
     var CollegeName = "removeSpacesInName989@33";
     var email2=document.getElementById('email2').value||null;
     var ph2=document.getElementById('ph2').value||null;
     var clg2=document.getElementById('clg2').value||null;
-    
+
     firebase.database().ref("users").once('value').then(function(values){
       var data=null;
       if(values)
@@ -57,7 +57,7 @@
         else if(!email1||!email1.match(z))
             alert("Enter valid email-id of participant 1!");
         else{
-          
+
           const auth = firebase.auth();
             const temp = name1.replace(/ /g,'')
             const promise = auth.createUserWithEmailAndPassword(ph1+temp+"@kc.com", CollegeName);
@@ -71,8 +71,16 @@
               email:email2,
               clg:clg2,
               ph:ph2
-            }
+            },
+            at: new Date()
           })
+          firebase.database().ref("count").once('value').then(function(values){
+            if(ph2)
+              firebase.database().ref("count").set(values.val()+2)
+              else {
+                firebase.database().ref("count").set(values.val()+1)
+              }
+            })
           document.getElementById("quiz").style.display="block";
           document.getElementById("register").style.display="none";
           renderQuestions();
@@ -91,7 +99,6 @@
     ref.once("value", function(snapshot)
   {
     var questions = snapshot.val();
-    console.log(questions);
     //alert(questions);
     var i = 0;
     for(var question in questions)
