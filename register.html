@@ -60,7 +60,10 @@
 
           const auth = firebase.auth();
             const temp = name1.replace(/ /g,'')
-            const promise = auth.createUserWithEmailAndPassword(ph1+temp+"@kc.com", CollegeName);
+            const promise = auth.createUserWithEmailAndPassword(ph1+temp+"@kc2019.com", CollegeName).then(function(user){
+              console.log("User is registerd and logged in");
+
+
             var timestamp=new Date();
             timestamp=timestamp.toString()
             promise.catch(e=>alert(e));
@@ -86,6 +89,17 @@
           document.getElementById("quiz").style.display="block";
           document.getElementById("register").style.display="none";
           renderQuestions();
+
+
+            }, function(error){
+
+            });
+
+
+
+
+
+            
         }
       }
       else {
